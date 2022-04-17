@@ -1,0 +1,51 @@
+.red {
+color: red;
+}
+
+.loginBorder {
+border-style: solid;
+border-width: 2px;
+}
+
+.center {
+  text-align: center;
+}
+
+.loginMargin {
+  margin-top: 20%;
+  margin-right: 20%;
+  margin-bottom: 20%;
+  margin-left: 20%;
+}
+
+.loginPadding {
+  padding-top: 12%;
+  padding-bottom: 12%;
+}
+
+.submitStyling {
+    height:50px;
+    width:100px;
+    font-size:20px;
+}
+
+.alignRight {
+  text-align: right;
+}
+
+.alignLeft {
+  text-align: left;
+}
+
+.flexRow {
+  display: flex;
+  justify-content: row;
+}
+
+.paddingRight {
+  padding-left: 10em;
+}
+
+.submitPad {
+  padding-left: 3em;
+}
