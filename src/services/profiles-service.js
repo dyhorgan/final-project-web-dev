@@ -1,6 +1,4 @@
 import axios from 'axios';
-//const TUITS_API = 'http://localhost:4000/api/tuits';
-//const TUITS_API = 'https://full-stack-developer-server2.herokuapp.com/api/tuits'
 
 const API_BASE = 'http://localhost:4000/api';
 

@@ -1,9 +1,12 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import NavBar from "./navbar.js"
 
 const Login = () => {
 
-  return(<div className="red loginBorder center loginMargin loginPadding container">
+  return(<div>
+          <NavBar />
+  <div className="red loginBorder center loginMargin loginPadding container">
             <div className="row">
               <div className="col-5"><h4>Username</h4></div> <div className="col-3"><input size="40"/></div>
             </div>
@@ -22,6 +25,8 @@ const Login = () => {
               </div>
             </div>
          </div>
+
+       </div>
   )
 
 }

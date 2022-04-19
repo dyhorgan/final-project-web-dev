@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react"
 import {useSelector, useDispatch} from "react-redux";
 import {findAllProfiles, newProfile} from "../actions/profile-actions.js"
 import * as service from "../services/profiles-service.js"
+import NavBar from "./navbar.js"
 
 
 
@@ -27,6 +28,7 @@ const Profile = () => {
 
 
     return (<div>
+      <NavBar />
       <h1>Profile Page</h1>
 
        <div>
@@ -34,6 +36,10 @@ const Profile = () => {
           <button>Edit Profile</button>
        </div>
        {state.map((element) => {return element.username})}
+
+       <h3>Reviews </h3>
+
+       <h3>Favorites</h3>
 
 
 
