@@ -1,8 +1,10 @@
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:4000/api';
+//const API_BASE = 'http://localhost:4000/api';
+//
+//const PROFILES_API = `${API_BASE}/profiles`;
 
-const PROFILES_API = `${API_BASE}/profiles`;
+const PROFILES_API = "https://final-project-web-dev-server.herokuapp.com/api/profiles";
 
 console.log("profiles api:");
 console.log(PROFILES_API);
