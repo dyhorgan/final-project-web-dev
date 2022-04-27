@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-
-import {createStore} from "redux";
+import {createStore, combineReducers} from "redux";
 import {Provider} from "react-redux";
-import reducer from "./reducers/profile-reducer.js"
+import profileReducer from "./reducers/profile-reducer.js"
+import movieReducer from "./reducers/movie-reducer.js"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
+let reducer =  combineReducers({profileReducer, movieReducer})
 const store = createStore(reducer);
 
 root.render(

@@ -9,18 +9,18 @@ const PROFILES_API = "https://final-project-web-dev-server.herokuapp.com/api/pro
 console.log("profiles api:");
 console.log(PROFILES_API);
 
-export const findAllProfiles = async () => {
-  const response = await axios.get(PROFILES_API);
+export const findProfile = async (profileInfo) => {
+  const response = await axios.get(PROFILES_API, {params: {username: profileInfo.username, password: profileInfo.password}});
 
-  const profiles = response.data;
-  console.log("logging in services");
-  console.log(profiles);
+  const profile = response.data;
+  console.log("logging findProfile in services");
+  console.log(profile);
 
-  return profiles
+  return profile
 
 }
 
-findAllProfiles();
+
 
 //export const findAllTuits = async () => {
 // const response = await axios.get(TUITS_API);
@@ -38,6 +38,7 @@ findAllProfiles();
 //}
 //
 export const createProfile = async (profile) => {
+ console.log("logging in createProfile service");
  const response = await axios.post(PROFILES_API, profile)
  return response.data;
 }
