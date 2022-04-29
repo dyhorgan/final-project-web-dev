@@ -49,3 +49,31 @@ border-width: 2px;
 .submitPad {
   padding-left: 3em;
 }
+
+.flexWrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flexNav {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.backgroundImage {
+ background-image: url("./mountains.jpg");
+ background-color: #cccccc;
+ -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+}
+
+.outlineText {
+  -webkit-text-stroke-width: .3px;
+  -webkit-text-stroke-color: #FFA500;
+}
+
+.whiteBack {
+  background-color: rgba(255,255,255, 0.3);
+}

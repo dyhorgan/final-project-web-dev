@@ -9,15 +9,13 @@ const Search = () => {
         return state.movieReducer;
       });
 
-
   let {query} = state;
-
 
   const dispatch = useDispatch();
 
   useEffect(() => {getMovies(dispatch, query)},[dispatch, query]);
   let key = 0;
-  return (<div>
+  return (<div className="m-5">
   <h1>Search Component</h1>
     <ul>
     {state.movies.map((movie) => {
@@ -25,7 +23,7 @@ const Search = () => {
         return (
         <li key={key}>
         <Link to={`/details/${movie.id}`}>
-          {movie.original_title}
+          {movie.original_title + " " + movie.release_date}
         </Link>
         </li>
         )

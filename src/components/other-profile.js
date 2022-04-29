@@ -7,7 +7,7 @@ import {Link} from "react-router-dom"
 import {findAllReviews} from "../actions/review-actions"
 
 
-const Profile = () => {
+const OtherProfile = () => {
 
 
     const state = useSelector((state) => {
@@ -17,7 +17,7 @@ const Profile = () => {
     console.log("logging state in profile component");
     console.log(state);
 
-    let profile = state.profileReducer;
+    let profile = state.profileReducer.otherProfile;
     let reviewObj = state.reviewReducer;
     let dispatch = useDispatch();
     useEffect(() => {findAllReviews(dispatch, profile._id)}, [dispatch, profile._id])
@@ -32,8 +32,6 @@ const Profile = () => {
 
 //        useEffect(() => {findProfile(dispatch, username, password)},[dispatch, username, password]);
 //    let {imageURL, username} = profile[0];
-    console.log("logging profile in profile.js");
-    console.log(profile);
 
 
     return (<div>
@@ -41,11 +39,6 @@ const Profile = () => {
       <div className="m-5">
       <h1>Profile Page</h1>
 
-       <div>
-          <Link to="/edit-profile">
-            <button>Edit Profile</button>
-          </Link>
-       </div>
        <img src={profile.imageURL} alt=""></img>
        <h3>{profile.username}</h3>
 
@@ -67,4 +60,4 @@ const Profile = () => {
     </div>)
 }
 
-export default Profile
+export default OtherProfile

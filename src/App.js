@@ -6,6 +6,9 @@ import Profile from "./components/profile.js"
 import Search from "./components/search.js"
 import EditProfile from "./components/edit-profile.js"
 import MovieDetails from "./components/movie-details.js"
+import Subgenre from "./components/subgenre.js"
+import PeopleToFollow from "./components/people-to-follow.js"
+import OtherProfile from "./components/other-profile.js"
 
 import {BrowserRouter, Route, Routes} from "react-router-dom"
 
@@ -21,6 +24,19 @@ function App() {
           <Route path="search" element={<Search />} />
           <Route path="edit-profile" element={<EditProfile />} />
           <Route path="details/:id" element={<MovieDetails />}/>
+          <Route path="subgenre/" >
+              <Route path="zombie" element={<Subgenre genre="zombie"/>} />
+              <Route path="vampire" element={<Subgenre genre="vampire" />} />
+              <Route path="werewolf" element={<Subgenre genre="werewolf" />} />
+              <Route path="aliens" element={<Subgenre genre="aliens" />} />
+              <Route path="monster" element={<Subgenre genre="monster" />} />
+              <Route path="slasher" element={<Subgenre genre="slasher" />} />
+              <Route path="psycho" element={<Subgenre genre="psycho" />} />
+              <Route path="comedic" element={<Subgenre genre="comedic" />} />
+              <Route path="paranormal" element={<Subgenre genre="paranormal" />} />
+          </Route>
+          <Route path="people-to-follow" element={<PeopleToFollow />} />
+          <Route path="other-profile" element={<OtherProfile />} />
         </Route>
       </Routes>
     </BrowserRouter>

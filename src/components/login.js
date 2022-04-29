@@ -28,12 +28,12 @@ const Login = () => {
 
   return(<div>
           <NavBar />
-  <div className="red loginBorder center loginMargin loginPadding container">
+  <div className="loginBorder center loginMargin loginPadding container outlineText font-weight-bold">
             <div className="row">
-              <div className="col-5"><h4>Username</h4></div> <div className="col-3"><input size="40" name="username" onChange={updateUsername}/></div>
+              <div className="col-5"><div className="display-3">Username</div></div> <div className="col-3"><input size="40" name="username" onChange={updateUsername}/></div>
             </div>
             <div className="row">
-              <div className="col-5"><h4>Password</h4></div> <div className="col-3"><input size="40" name="password" onChange={updatePassword}/> </div>
+              <div className="col-5"><div className="display-3 font-weight-bold">Password</div></div> <div className="col-3"><input size="40" name="password" onChange={updatePassword}/> </div>
             </div>
             <div className="row">
               <div className="col-5"/>

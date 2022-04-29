@@ -5,30 +5,30 @@ import axios from 'axios';
 //const PROFILES_API = `${API_BASE}/profiles`;
 
 const PROFILES_API = "https://final-project-web-dev-server.herokuapp.com/api/profiles";
-
-console.log("profiles api:");
-console.log(PROFILES_API);
+const PROFILE_API = "https://final-project-web-dev-server.herokuapp.com/api/profile";
 
 export const findProfile = async (profileInfo) => {
-  const response = await axios.get(PROFILES_API, {params: {username: profileInfo.username, password: profileInfo.password}});
+
+  const response = await axios.get(PROFILE_API, {params: {username: profileInfo.username, password: profileInfo.password}});
 
   const profile = response.data;
-  console.log("logging findProfile in services");
-  console.log(profile);
 
   return profile
-
 }
 
+export const updateProfile = async (obj) => {
+   console.log("logging obj in profile service");
+   console.log(obj);
+   const response = await axios.put(PROFILES_API + "/" + obj._id, {body: obj});
+   return response.data;
+}
 
+export const findAllProfiles = async () => {
+ const response = await axios.get(PROFILES_API);
+ const profiles = response.data;
 
-//export const findAllTuits = async () => {
-// const response = await axios.get(TUITS_API);
-// const tuits = response.data;
-// console.log("logging tuits in services!");
-// console.log(tuits);
-// return tuits;
-//}
+ return profiles;
+}
 //
 //export const deleteTuit = async (tuit) => {
 //
