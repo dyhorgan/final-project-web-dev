@@ -2,6 +2,7 @@ import React, {useEffect, useCallback, useState} from "react"
 import {Link} from "react-router-dom"
 import {useSelector, useDispatch} from "react-redux";
 import {findAllProfiles, setOtherProfile} from "../actions/profile-actions.js"
+import NavBar from "./navbar.js"
 
 const PeopleToFollow = () => {
 
@@ -16,6 +17,7 @@ const PeopleToFollow = () => {
   let look = useCallback((profile)=>{setOtherProfile(dispatch, profile)}, [dispatch, {}]);
   let key = 0;
   return (<div>
+       <NavBar />
     <h1 className="m-5">People Component</h1>
     <div className="m-5">
     {state.profiles.map((profile) => {

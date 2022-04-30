@@ -15,8 +15,7 @@ const Profile = () => {
 
       return state
     });
-    console.log("logging state in profile component");
-    console.log(state);
+
     let profile = state.profileReducer;
     let dispatch = useDispatch();
         useEffect(() => {findAllReviews(dispatch, profile._id)}, [dispatch, profile._id]);
@@ -24,18 +23,11 @@ const Profile = () => {
         useEffect(() => {findAllFollowing(dispatch, profile._id)}, [dispatch, profile._id]);
 
 
+
     let reviewObj = state.reviewReducer;
     let favoriteObj = state.favoriteReducer;
     let followingObj = state.followingReducer;
 
-////    useEffect(() => {findAllFollowers(dispatch, profile._id)}, [dispatch, profile._id]);
-
-
-    console.log("logging profile in profile.js");
-    console.log(profile);
-
-   console.log("logging image in profile.js");
-       console.log(profile.imageUrl);
 
     let key = 0;
 

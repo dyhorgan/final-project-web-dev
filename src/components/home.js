@@ -1,9 +1,10 @@
-import React, {useEffect} from "react"
+import React, {useCallback, useEffect, useState} from "react"
 import NavBar from "./navbar.js"
 import {useSelector, useDispatch} from "react-redux";
-import {findAllReviews} from "../actions/review-actions.js"
+import {findAllReviews, findFriendReviews} from "../actions/review-actions.js"
 import {findAllFavorites} from "../actions/favorite-actions.js"
 import {findAllProfiles} from "../actions/profile-actions.js"
+import {findAllFollowing} from "../actions/following-actions.js"
 
 const Home = () => {
     let dispatch = useDispatch();
@@ -13,18 +14,27 @@ const Home = () => {
     });
     useEffect(() => {findAllProfiles(dispatch)},[dispatch]);
     let profileInfo = state.profileReducer;
-    console.log(state);
 
     useEffect(() => {findAllReviews(dispatch, profileInfo._id)}, [dispatch, profileInfo._id]);
     useEffect(() => {findAllFavorites(dispatch, profileInfo._id)}, [dispatch, profileInfo._id]);
-
+    useEffect(() => {findAllFollowing(dispatch, profileInfo._id)}, [dispatch, profileInfo._id]);
 
     let reviewObj = state.reviewReducer;
     let favoriteObj = state.favoriteReducer;
+    let followingObj = state.followingReducer;
+
+    let following = followingObj.following;
+    let friendArray = following.map((obj) => {return obj.followingId});
+
+    useEffect(() => {
+
+    findFriendReviews(dispatch, friendArray) },
+    [dispatch, following]);
+
 
     let key = 0;
 
-    let recentUsers = profileInfo.profiles.slice(-4);
+    let recentUsers = profileInfo.profiles.slice(-4).reverse();
 
     return (<div className="font-weight-bold">
         <NavBar />
@@ -49,12 +59,33 @@ const Home = () => {
                   return (<h5 className="text-white" key={key}>{favorite.title}</h5>);
                })}
                </div>) : ""}
-        {profileInfo.username ? <h1 className="font-weight-bold">{"Your Friends" + "' " + "Recent Reviews"}</h1>:""}
-        {profileInfo.username ? <h1 className="font-weight-bold">{"Your Friends" + "' " + "Recent Favorites"}</h1>:""}
+        {profileInfo.username ? ( <div>
+
+        <h1 className="font-weight-bold">{"Your Friends" + "' " + "Recent Reviews"}</h1>
+
+             {state.reviewReducer.friendReviews.map((element, index) => {
+              key += 1;
+
+              if(element){
+                let name = following.find((friend) => {
+                    if(friend.followingId === element.userId){
+                      return friend.following;
+                    }
+                }).following;
+                return <h3 key={key} className="text-white">{name + ": " + element.title + " - " + element.text}</h3>
+              }
+             }
+             )}
+        </div>) :""}
 
             <div className="mt-5">
               <h1 className="font-weight-bold">Users Who Recently Joined</h1>
-              {recentUsers.map((user) => <h5 className="text-white">{user.username}</h5>)}
+              {recentUsers.map((user) => {
+                      key += 1;
+                    return <h5 key={key} className="text-white">{user.username}</h5>
+                  }
+                )
+              }
             </div>
           </div>
         </div>

@@ -5,8 +5,7 @@ import axios from 'axios';
 //const PROFILES_API = `${API_BASE}/profiles`;
 
 const REVIEWS_API = "https://final-project-web-dev-server.herokuapp.com/api/reviews";
-const USER_REVIEWS_API = "https://final-project-web-dev-server.herokuapp.com/api/user-reviews";
-const MOVIE_REVIEWS_API = "https://final-project-web-dev-server.herokuapp.com/api/movie-reviews";
+
 
 console.log("reviews api:");
 console.log(REVIEWS_API);
@@ -18,6 +17,17 @@ export const findReview = async (id) => {
   const profile = response.data;
 
   return profile;
+}
+
+export const findFriendReviews = async (array) => {
+
+  let reviewArray = await Promise.all(array.map(async (uid) => {
+    const response = await axios.get(REVIEWS_API, {params: {uid}});
+    const reviews = response.data;
+    return reviews[reviews.length - 1];
+  })).then((results) => results);
+
+  return reviewArray;
 }
 
 export const findAllReviews = async (uid) => {

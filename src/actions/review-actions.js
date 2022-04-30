@@ -3,13 +3,21 @@ import * as service from "../services/reviews-service.js"
 export const CREATE_REVIEW = 'CREATE_REVIEW';
 export const FIND_REVIEW = 'FIND_REVIEW';
 export const FIND_ALL_REVIEWS = 'FIND_ALL_REVIEWS';
+export const FIND_FRIEND_REVIEWS = 'FIND_FRIEND_REVIEWS';
+
+export const findFriendReviews = async (dispatch, array) => {
+    const reviews = await service.findFriendReviews(array);
+
+    dispatch({
+      type: FIND_FRIEND_REVIEWS,
+      reviews
+    })
+}
 
 export const createReview = async (dispatch, review) => {
 
  const newReview = await service.createReview(review);
 
- console.log("created review in action");
- console.log(newReview);
 
  dispatch({
    type: CREATE_REVIEW,
