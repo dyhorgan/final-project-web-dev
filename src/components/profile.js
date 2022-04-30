@@ -18,9 +18,9 @@ const Profile = () => {
 
     let profile = state.profileReducer;
     let dispatch = useDispatch();
-        useEffect(() => {findAllReviews(dispatch, profile._id)}, [dispatch, profile._id]);
-        useEffect(() => {findAllFavorites(dispatch, profile._id)}, [dispatch, profile._id]);
-        useEffect(() => {findAllFollowing(dispatch, profile._id)}, [dispatch, profile._id]);
+        useEffect(() => {findAllReviews(dispatch, profile._id)}, [dispatch, state.reviewReducer]);
+        useEffect(() => {findAllFavorites(dispatch, profile._id)}, [dispatch, state.favoriteReducer]);
+        useEffect(() => {findAllFollowing(dispatch, profile._id)}, [dispatch, state.followingReducer]);
 
 
 
