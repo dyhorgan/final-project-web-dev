@@ -3,7 +3,7 @@ import {FIND_REVIEW, CREATE_REVIEW, FIND_ALL_REVIEWS} from "../actions/review-ac
 const reviewReducer = (state = {reviews: [], review: {}}, action) => {
   switch(action.type){
     case CREATE_REVIEW:
-      return action.newReview;
+      return {...state, review: action.newReview};
     case FIND_REVIEW:
       return {...state, review: action.review};
     case FIND_ALL_REVIEWS:

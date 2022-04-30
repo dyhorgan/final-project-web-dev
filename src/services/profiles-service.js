@@ -13,12 +13,13 @@ export const findProfile = async (profileInfo) => {
 
   const profile = response.data;
 
+
+
   return profile
 }
 
 export const updateProfile = async (obj) => {
-   console.log("logging obj in profile service");
-   console.log(obj);
+
    const response = await axios.put(PROFILES_API + "/" + obj._id, {body: obj});
    return response.data;
 }
@@ -38,7 +39,7 @@ export const findAllProfiles = async () => {
 //}
 //
 export const createProfile = async (profile) => {
- console.log("logging in createProfile service");
+
  const response = await axios.post(PROFILES_API, profile)
  return response.data;
 }

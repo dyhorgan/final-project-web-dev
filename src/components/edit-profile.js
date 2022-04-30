@@ -15,27 +15,25 @@ const EditProfile = () => {
       return state
     });
 
-    const [bioText, setText] = useState("");
+
 
     let profile = state.profileReducer;
     let reviewObj = state.reviewReducer;
     let dispatch = useDispatch();
-    useEffect(() => {findAllReviews(dispatch, profile._id)}, [dispatch, profile._id])
+    useEffect(() => {findAllReviews(dispatch, profile._id)}, [dispatch, profile._id]);
 
-
-//    const [newProfile, setNewProfile] = useState({
-//                                                      username: "Sample",
-//                                                      password: "guest",
-//                                                      imageURL: "https://www.mensjournal.com/wp-content/uploads/mf/daniel-craig-james-bond-gallery-casino-royale-main.jpg?quality=86&strip=all"
-//                                                  });
-//        const dispatch = useDispatch();
-
-//        useEffect(() => {findProfile(dispatch, username, password)},[dispatch, username, password]);
-//    let {imageURL, username} = profile[0];
+    const [srcText, setSrcText] = useState(profile.imageUrl);
+    const [bioText, setText] = useState(profile.bio);
     const onChangeBioFunc = (event) => {
 
       setText(event.target.value);
       console.log(bioText);
+    };
+
+    const onChangeSRCFunc = (event) => {
+
+          setSrcText(event.target.value);
+          console.log(srcText);
     };
 
     const submitBio = useCallback((event) => {
@@ -43,31 +41,42 @@ const EditProfile = () => {
       updateProfile(dispatch, {bio: bioText, _id: profile._id})
     }, [dispatch, {bio: bioText}]);
 
+    const submitImage = useCallback((event) => {
+      event.preventDefault();
+      updateProfile(dispatch, {imageUrl: srcText, _id: profile._id})
+    }, [dispatch, {imageUrl: srcText}])
+
 
     return (<div>
       <NavBar />
       <div className="m-5">
-      <h1>Profile Page</h1>
+      <h1 className="display-1 text-white">Profile Page</h1>
+       <img src={profile.imageUrl} alt="" width="20%"/>
+       <form onSubmit={submitImage} className="text-white">
+          <label>Update Profile Picture
+            <input type="text" name="image" className="ms-3" value={srcText} onChange={onChangeSRCFunc}/>
+          </label>
+          <input className="btn btn-primary ms-3" type="submit" value="Update Image URL"/>
+       </form>
 
-       <img src={profile.imageURL} alt=""></img>
-       <h3>{profile.username}</h3>
+       <h3 className="display-3 text-white">{profile.username}</h3>
 
-       <form onSubmit={submitBio}>
+       <form onSubmit={submitBio} className="text-white">
            <label>Update Bio
-           <input type="text" name="review" className="ms-3" value={profile.bio} onChange={onChangeBioFunc}/>
+            <input type="text" name="bio" className="ms-3" value={bioText} onChange={onChangeBioFunc}/>
            </label>
            <input className="btn btn-primary ms-3" type="submit" value="Update Bio"/>
          </form>
 
 
-       <h3>Reviews </h3>
+       <h3 className="text-white">Reviews </h3>
        {reviewObj.reviews.map((rev) => {return <p>{rev.text}</p>})}
 
-       <h3>Favorites</h3>
+              <h3 className="text-white">Favorites</h3>
 
-       <h3>Following</h3>
+              <h3 className="text-white">Following</h3>
 
-       <h3>Followers</h3>
+              <h3 className="text-white">Followers</h3>
        </div>
 
 

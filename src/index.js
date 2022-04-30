@@ -7,9 +7,11 @@ import {Provider} from "react-redux";
 import profileReducer from "./reducers/profile-reducer.js"
 import movieReducer from "./reducers/movie-reducer.js"
 import reviewReducer from "./reducers/review-reducer.js"
+import favoriteReducer from "./reducers/favorite-reducer.js"
+import followingReducer from "./reducers/following-reducer.js"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-let reducer =  combineReducers({profileReducer, movieReducer, reviewReducer})
+let reducer =  combineReducers({profileReducer, movieReducer, reviewReducer, favoriteReducer, followingReducer})
 const store = createStore(reducer);
 
 root.render(

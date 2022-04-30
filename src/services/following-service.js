@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 const FOLLOWING_API = "https://final-project-web-dev-server.herokuapp.com/api/following";
+const FOLLOWER_API = "https://final-project-web-dev-server.herokuapp.com/api/followers";
 
-export const findFollower = async (id) => {
+export const findFollowing = async (id) => {
 
   const response = await axios.get(FOLLOWING_API, {params: {id}});
 
@@ -11,17 +12,19 @@ export const findFollower = async (id) => {
   return follower;
 }
 
-export const findAllFollowers = async (id) => {
-
- const response = await axios.get(FOLLOWING_API, {params: {id}});
- const followers = response.data;
- return followers;
-}
 export const findAllFollowing = async (id) => {
 
  const response = await axios.get(FOLLOWING_API, {params: {id}});
  const following = response.data;
+
  return following;
+}
+
+export const findAllFollowers = async (id) => {
+const response = await axios.get(FOLLOWER_API, {params: {id}});
+ const followers = response.data;
+
+ return followers;
 }
 //
 //export const deleteTuit = async (tuit) => {

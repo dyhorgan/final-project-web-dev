@@ -21,8 +21,7 @@ export const findReview = async (id) => {
 }
 
 export const findAllReviews = async (uid) => {
- console.log("logging in review service");
- console.log(uid);
+
  const response = await axios.get(REVIEWS_API, {params: {uid}});
  const reviews = response.data;
  return reviews;

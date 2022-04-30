@@ -1,6 +1,8 @@
 import React, {useEffect} from "react"
 import {getMoviesArray, getMoviePosters} from "../actions/movie-actions.js"
 import {useSelector, useDispatch} from "react-redux";
+import {Link} from "react-router-dom";
+import NavBar from "./navbar.js"
 
 
 const Subgenre = (props) => {
@@ -16,7 +18,8 @@ const Subgenre = (props) => {
   console.log(state);
   let key = 0;
   let index = -1;
-  return (
+  return (<div>
+          <NavBar />
       <div className="m-5">
     <h1>{props.genre} movies</h1>
     <div className="flexWrap">
@@ -25,12 +28,15 @@ const Subgenre = (props) => {
     index += 1;
     return (
     <div className="card"  style={{width: "28rem"}} key={key}>
+      <Link to={"/details/" + movie.id}>
       <img className="card-img-top" width="100px" src={"https://image.tmdb.org/t/p/original/" + state.posters[index]} alt="Card image cap"/>
+      </Link>
       <div className="card-body center">
         <h3 className="card-text">{movie.original_title}</h3>
       </div>
     </div>
     )})}
+    </div>
     </div>
     </div>
   )
@@ -73,7 +79,7 @@ const filmObj = {
              	652004,
              	10395,
               10725],
-  aliens: [1091,
+  alien: [1091,
            	348,
            	11850,
            300668,
@@ -109,7 +115,7 @@ const filmObj = {
             	440021,
             	16938,
             	1359],
-  psycho: [694,
+  psychological: [694,
            	503919,
            	530385,
            	419430,

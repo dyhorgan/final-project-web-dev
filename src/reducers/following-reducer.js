@@ -1,15 +1,17 @@
-import {FIND_REVIEW, CREATE_REVIEW, FIND_ALL_REVIEWS} from "../actions/review-actions"
+import {FIND_FOLLOWING, CREATE_FOLLOWING, FIND_ALL_FOLLOWING, FIND_ALL_FOLLOWERS} from "../actions/following-actions"
 
-const reviewReducer = (state = {reviews: [], review: {}}, action) => {
+const followingReducer = (state = {following: [], followers: [], follow: {}}, action) => {
   switch(action.type){
-    case CREATE_REVIEW:
-      return action.newReview;
-    case FIND_REVIEW:
-      return {...state, review: action.review};
-    case FIND_ALL_REVIEWS:
-      return {...state, reviews: action.reviews};
+    case CREATE_FOLLOWING:
+      return {...state, follow: action.newFollowing};
+    case FIND_FOLLOWING:
+      return {...state, follow: action.following};
+    case FIND_ALL_FOLLOWING:
+      return {...state, following: action.following};
+    case FIND_ALL_FOLLOWERS:
+      return {...state, followers: action.followers}
     default: return(state)
   }
 }
 
-export default reviewReducer
+export default followingReducer

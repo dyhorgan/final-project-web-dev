@@ -21,7 +21,7 @@ export const updateProfile = async (dispatch, obj) => {
 
   dispatch({
     type: UPDATE_PROFILE,
-    updatedProfile
+    updatedProfile: obj
   })
 }
 

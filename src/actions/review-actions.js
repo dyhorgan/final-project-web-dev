@@ -8,6 +8,9 @@ export const createReview = async (dispatch, review) => {
 
  const newReview = await service.createReview(review);
 
+ console.log("created review in action");
+ console.log(newReview);
+
  dispatch({
    type: CREATE_REVIEW,
    newReview

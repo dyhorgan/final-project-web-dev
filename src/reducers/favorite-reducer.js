@@ -3,7 +3,7 @@ import {FIND_FAVORITE, CREATE_FAVORITE, FIND_ALL_FAVORITES} from "../actions/fav
 const favoriteReducer = (state = {favorites: [], favorite: {}}, action) => {
   switch(action.type){
     case CREATE_FAVORITE:
-      return action.newFavorite;
+      return {...state, favorite: action.newFavorite};
     case FIND_FAVORITE:
       return {...state, favorite: action.favorite};
     case FIND_ALL_FAVORITES:

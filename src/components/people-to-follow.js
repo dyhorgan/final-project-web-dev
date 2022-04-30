@@ -17,15 +17,15 @@ const PeopleToFollow = () => {
   let key = 0;
   return (<div>
     <h1 className="m-5">People Component</h1>
-    <ul>
+    <div className="m-5">
     {state.profiles.map((profile) => {
       key += 1;
-      return (<Link to="/other-profile" key={key}>
-        <li  onClick={() => look(profile)}>{profile.username}</li>
+      return (<Link to="/other-profile" key={key} style={{textDecoration: 'none'}}>
+        <div className={"display-5 white"} onClick={() => look(profile)}>{profile.username}</div>
           </Link>
       )
     })}
-    </ul>
+    </div>
     </div>
   )
 }

@@ -37,9 +37,11 @@ const NavBar = () => {
                 <li className="nav-item active ms-5">
                   <Link className="nav-link" to="/home"><h5>Home</h5></Link>
                 </li>
+                {username.length ? "" :
                 <li className="nav-item ms-5">
                   <Link className="nav-link" to="/login"><h5>Login</h5></Link>
                 </li>
+                }
                 <li className="nav-item dropdown ms-5">
                   <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                    Subgenres
@@ -48,10 +50,10 @@ const NavBar = () => {
                     <Link className="dropdown-item" to="/subgenre/zombie">Zombie</Link>
                     <Link className="dropdown-item" to="/subgenre/vampire">Vampire</Link>
                     <Link className="dropdown-item" to="/subgenre/werewolf">Werewolf</Link>
-                    <Link className="dropdown-item" to="/subgenre/aliens">Aliens</Link>
+                    <Link className="dropdown-item" to="/subgenre/alien">Aliens</Link>
                     <Link className="dropdown-item" to="/subgenre/monster">Giant Monster</Link>
                     <Link className="dropdown-item" to="/subgenre/slasher">Slasher</Link>
-                    <Link className="dropdown-item" to="/subgenre/psycho">Psychological</Link>
+                    <Link className="dropdown-item" to="/subgenre/psychological">Psychological</Link>
                     <Link className="dropdown-item" to="/subgenre/comedic">Comedic</Link>
                     <Link className="dropdown-item" to="/subgenre/paranormal">Paranormal</Link>
                   </div>

@@ -1,16 +1,16 @@
 
 import {FIND_PROFILE, CREATE_PROFILE, FIND_ALL_PROFILES, SET_OTHER_PROFILE, UPDATE_PROFILE} from "../actions/profile-actions"
 
-const profileReducer = (state = {username: "", profiles: [], _id: "", otherProfile:{username: ""}}, action) => {
+const profileReducer = (state = {username: "", profiles: [], _id: "", imageUrl: "", otherProfile:{username: ""}}, action) => {
   switch(action.type){
     case CREATE_PROFILE:
       return {...state, username: action.newProfile.username, _id: action.newProfile._id};
     case FIND_PROFILE:
-      return {...state, username: action.profile.username, _id: action.profile._id};
+      return {...state, username: action.profile.username, _id: action.profile._id, imageUrl: action.profile.imageUrl, bio: action.profile.bio};
     case FIND_ALL_PROFILES:
-      return {...state, profiles: action.profiles};
+      return {...state, profiles: action.profiles.filter((element) => element.username !== state.username)};
     case SET_OTHER_PROFILE:
-      return {...state, otherProfile: {username: action.profile.username, _id: action.profile._id}};
+      return {...state, otherProfile: {username: action.profile.username, _id: action.profile._id, imageUrl: action.profile.imageUrl, bio: action.profile.bio}};
     case UPDATE_PROFILE:
       return {...state, ...action.updatedProfile};
     default: return(state)

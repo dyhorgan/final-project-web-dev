@@ -28,10 +28,10 @@ function App() {
               <Route path="zombie" element={<Subgenre genre="zombie"/>} />
               <Route path="vampire" element={<Subgenre genre="vampire" />} />
               <Route path="werewolf" element={<Subgenre genre="werewolf" />} />
-              <Route path="aliens" element={<Subgenre genre="aliens" />} />
+              <Route path="alien" element={<Subgenre genre="alien" />} />
               <Route path="monster" element={<Subgenre genre="monster" />} />
               <Route path="slasher" element={<Subgenre genre="slasher" />} />
-              <Route path="psycho" element={<Subgenre genre="psycho" />} />
+              <Route path="psychological" element={<Subgenre genre="psychological" />} />
               <Route path="comedic" element={<Subgenre genre="comedic" />} />
               <Route path="paranormal" element={<Subgenre genre="paranormal" />} />
           </Route>

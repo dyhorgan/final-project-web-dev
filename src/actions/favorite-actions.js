@@ -24,8 +24,8 @@ export const findFavorite = async (dispatch, fid) => {
    });
 }
 
-export const findAllFavorites = async (dispatch, fid) => {
-   const favorites = await service.findAllFavorites(fid);
+export const findAllFavorites = async (dispatch, uid) => {
+   const favorites = await service.findAllFavorites(uid);
 
    dispatch({
     type: FIND_ALL_FAVORITES,

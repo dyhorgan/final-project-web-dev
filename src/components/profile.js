@@ -4,8 +4,9 @@ import {useSelector, useDispatch} from "react-redux";
 //import * as service from "../services/profiles-service.js"
 import NavBar from "./navbar.js"
 import {Link} from "react-router-dom"
-import {findAllReviews} from "../actions/review-actions"
-
+import {findAllReviews} from "../actions/review-actions.js"
+import {findAllFavorites} from "../actions/favorite-actions.js"
+import {findAllFollowing} from "../actions/following-actions"
 
 const Profile = () => {
 
@@ -16,53 +17,67 @@ const Profile = () => {
     });
     console.log("logging state in profile component");
     console.log(state);
-
     let profile = state.profileReducer;
-    let reviewObj = state.reviewReducer;
     let dispatch = useDispatch();
-    useEffect(() => {findAllReviews(dispatch, profile._id)}, [dispatch, profile._id])
+        useEffect(() => {findAllReviews(dispatch, profile._id)}, [dispatch, profile._id]);
+        useEffect(() => {findAllFavorites(dispatch, profile._id)}, [dispatch, profile._id]);
+        useEffect(() => {findAllFollowing(dispatch, profile._id)}, [dispatch, profile._id]);
 
 
-//    const [newProfile, setNewProfile] = useState({
-//                                                      username: "Sample",
-//                                                      password: "guest",
-//                                                      imageURL: "https://www.mensjournal.com/wp-content/uploads/mf/daniel-craig-james-bond-gallery-casino-royale-main.jpg?quality=86&strip=all"
-//                                                  });
-//        const dispatch = useDispatch();
+    let reviewObj = state.reviewReducer;
+    let favoriteObj = state.favoriteReducer;
+    let followingObj = state.followingReducer;
 
-//        useEffect(() => {findProfile(dispatch, username, password)},[dispatch, username, password]);
-//    let {imageURL, username} = profile[0];
+////    useEffect(() => {findAllFollowers(dispatch, profile._id)}, [dispatch, profile._id]);
+
+
     console.log("logging profile in profile.js");
     console.log(profile);
 
+   console.log("logging image in profile.js");
+       console.log(profile.imageUrl);
+
+    let key = 0;
 
     return (<div>
       <NavBar />
       <div className="m-5">
-      <h1>Profile Page</h1>
+      <h1 className="display-1 text-white">Profile Page</h1>
 
        <div>
           <Link to="/edit-profile">
             <button>Edit Profile</button>
           </Link>
        </div>
-       <img src={profile.imageURL} alt=""></img>
-       <h3>{profile.username}</h3>
+       <img src={profile.imageUrl} width="20%" alt="" />
 
-       <p>{profile.bio}</p>
+       <h3 className="display-3 text-white">{profile.username}</h3>
+
+       <p className="display-5 text-white">{profile.bio}</p>
 
 
-       <h3>Reviews </h3>
-       {reviewObj.reviews.map((rev) => {return <p>{rev.text}</p>})}
+       <h3 className="text-white">Reviews </h3>
+       {reviewObj.reviews.map((rev) => {
+       key += 1;
+       return (<div key={key}>
+          <h5 className="text-white">{rev.title} - {rev.text}</h5>
+       </div>)
+       })}
 
-       <h3>Favorites</h3>
+       <h3 className="text-white">Favorites</h3>
+       {favoriteObj.favorites.map((favorite) => {
+            key += 1;
+          return (<h5 className="text-white" key={key}>{favorite.title}</h5>)
+       })}
 
-       <h3>Following</h3>
+       <h3 className="text-white">Following</h3>
+       {followingObj.following.map((person) => {
+       key += 1;
+       return <div className="text-white" key={key}>{person.following}</div>})}
 
-       <h3>Followers</h3>
+       <h3 className="text-white">Followers</h3>
+
        </div>
-
-
 
     </div>)
 }

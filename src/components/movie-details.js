@@ -4,6 +4,7 @@ import {getMovie} from "../actions/movie-actions.js"
 import {createFavorite} from "../actions/favorite-actions.js"
 import {createReview} from "../actions/review-actions.js"
 import {useDispatch, useSelector} from "react-redux"
+import NavBar from "./navbar.js"
 
 const MovieDetails = () => {
 
@@ -17,6 +18,7 @@ const MovieDetails = () => {
         });
 
   let {movie} = state.movieReducer;
+  let {title} = movie;
   let movieId = movie.id;
   let {_id, username} = state.profileReducer;
 
@@ -35,13 +37,15 @@ const MovieDetails = () => {
   const submit = useCallback((event) => {
       event.preventDefault();
       let date = Date.now();
-      createReview(dispatch, {text, movieId, userId, date})}, [dispatch, {text, movieId, userId, date: {}}]
+      createReview(dispatch, {text, movieId, userId, date, title})}, [dispatch, {text, movieId, userId, date: {}, title}]
       );
-  const add = useCallback(() => {createFavorite(dispatch, {userId, movieId})}, [dispatch, {userId, movieId}]);
+  const add = useCallback(() => {createFavorite(dispatch, {userId, movieId, title})}, [dispatch, {userId, movieId, title}]);
 
   const onChangeFunc = (event) => {setText(event.target.value)};
 
-  return(<div className="m-5">
+  return(<div>
+    <NavBar />
+  <div className="m-5">
 
   <h1>{movie.original_title}</h1>
   <h4>Release Date: {movie.release_date}</h4>
@@ -66,6 +70,7 @@ const MovieDetails = () => {
   </div> : <div />
   }
 
+  </div>
   </div>)
 }
 

@@ -30,8 +30,7 @@ export const findAllFavorites = async (id) => {
 //}
 //
 export const createFavorite = async (favorite) => {
- console.log("param favorite in service post");
- console.log(favorite);
+
  const response = await axios.post(FAVORITES_API, favorite);
 
  return response.data;
