@@ -1,6 +1,6 @@
 import {GET_MOVIES, SET_QUERY, GET_MOVIE, GET_MOVIES_ARRAY, GET_MOVIE_POSTERS, GET_ONE_POSTER} from "../actions/movie-actions.js"
 
-const movieReducer = (state = {movies: [], posters: [], poster: {}, query: "", movie: {}}, action) => {
+const movieReducer = (state = {movies: [], posters: [], poster: "", query: "", movie: {id:""}}, action) => {
 
   switch(action.type){
     case GET_MOVIES:

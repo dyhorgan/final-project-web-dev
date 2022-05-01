@@ -47,8 +47,11 @@ export const getMoviePosters = async (dispatch, array) => {
 export const getOnePoster = async (dispatch, id) => {
     console.log("logging id in poster action");
     console.log(id);
-    const poster = await service.getOnePoster(id);
-
+    let poster = "";
+    if(id){
+      poster = await service.getOnePoster(id);
+    }
+    console.log(poster);
     dispatch({
       type: GET_ONE_POSTER,
       poster

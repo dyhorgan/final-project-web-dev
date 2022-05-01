@@ -56,6 +56,9 @@ const Profile = () => {
                 <p className="display-5 text-white ms-2">{profile.bio}</p>
               </div>
 
+              <h4 className="text-white">{profile.email}</h4>
+              <h4 className="text-white">{profile.phone}</h4>
+
 
               <h3 className="text-white">Reviews </h3>
               {reviewObj.reviews.map((rev) => {
@@ -77,7 +80,10 @@ const Profile = () => {
               <h3 className="text-white">Favorites</h3>
               {favoriteObj.favorites.map((favorite) => {
                    key += 1;
-                 return (<h5 className="text-white" key={key}>{favorite.title}</h5>)
+                 return (<Link to={"/details/" + favorite.movieId} style={{textDecoration: 'none'}} key={key}>
+                 <h5 className="text-white" >{favorite.title}</h5>
+                  </Link>
+                 )
               })}
               </div>
               <h3 className="text-white">Following</h3>

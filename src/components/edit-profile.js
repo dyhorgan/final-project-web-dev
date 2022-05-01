@@ -24,11 +24,25 @@ const EditProfile = () => {
 
     const [srcText, setSrcText] = useState(profile.imageUrl);
     const [bioText, setText] = useState(profile.bio);
+    const [emailText, setEmail] = useState(profile.email);
+    const [phoneText, setPhone] = useState(profile.phone);
     const onChangeBioFunc = (event) => {
 
       setText(event.target.value);
       console.log(bioText);
     };
+
+     const onChangeEmailFunc = (event) => {
+
+          setEmail(event.target.value);
+          console.log(emailText);
+        };
+
+      const onChangePhoneFunc = (event) => {
+
+           setPhone(event.target.value);
+           console.log(phoneText);
+         };
 
     const onChangeSRCFunc = (event) => {
 
@@ -46,11 +60,25 @@ const EditProfile = () => {
       updateProfile(dispatch, {imageUrl: srcText, _id: profile._id})
     }, [dispatch, {imageUrl: srcText}])
 
+    const submitEmail = useCallback((event) => {
+          event.preventDefault();
+          updateProfile(dispatch, {email: emailText, _id: profile._id})
+        }, [dispatch, {}])
+
+    const submitPhone = useCallback((event) => {
+          event.preventDefault();
+          updateProfile(dispatch, {phone: phoneText, _id: profile._id})
+        }, [dispatch, {}])
+
 
     return (<div>
       <NavBar />
       <div className="m-5">
-      <h1 className="display-1 text-white">Profile Page</h1>
+      <div>
+      <Link to="/profile">
+        <button className="btn btn-primary">Finished</button>
+      </Link>
+      </div>
        <img src={profile.imageUrl} alt="" width="20%"/>
        <form onSubmit={submitImage} className="text-white">
           <label>Update Profile Picture
@@ -67,6 +95,20 @@ const EditProfile = () => {
            </label>
            <input className="btn btn-primary ms-3" type="submit" value="Update Bio"/>
          </form>
+       <h5 className="text-white">{profile.email}</h5>
+              <form onSubmit={submitEmail} className="text-white">
+                  <label>Update Email
+                   <input type="text" name="email" className="ms-3" value={emailText} onChange={onChangeEmailFunc}/>
+                  </label>
+                  <input className="btn btn-primary ms-3" type="submit" value="Update Email"/>
+              </form>
+       <h5 className="text-white">{profile.phone}</h5>
+                     <form onSubmit={submitPhone} className="text-white">
+                         <label>Update Phone
+                          <input type="text" name="phone" className="ms-3" value={phoneText} onChange={onChangePhoneFunc}/>
+                         </label>
+                         <input className="btn btn-primary ms-3" type="submit" value="Update Phone"/>
+                     </form>
       </div>
     </div>)
 }

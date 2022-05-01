@@ -27,7 +27,7 @@ export const createProfile = async (dispatch, profile) => {
 }
 
 export const resetProfile = (dispatch) => {
-  let state = {username: "", _id: "", imageUrl: "", otherProfile:{username: ""}};
+  let state = {username: "", _id: "", imageUrl: "", bio: "", email: "", phone: "", otherProfile:{username: ""}};
 dispatch({
    type: RESET_PROFILE,
    state

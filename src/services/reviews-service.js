@@ -36,6 +36,11 @@ export const findAllReviews = async (uid) => {
  const reviews = response.data;
  return reviews;
 }
+
+export const findAllReviewsByMovie = async (mid) => {
+  const response = await axios.get(REVIEWS_API + "/movie/" + mid);
+  return response.data;
+}
 //
 //export const deleteTuit = async (tuit) => {
 //
@@ -45,6 +50,9 @@ export const findAllReviews = async (uid) => {
 //}
 //
 export const createReview = async (review) => {
+   console.log("logging review being sent");
+
+  console.log(review);
 // let revObject = {...review, user._id};
  const response = await axios.post(REVIEWS_API, review);
 // await axios.post(USER_REVIEWS_API, {reviewId: response.data._id, user.userId});

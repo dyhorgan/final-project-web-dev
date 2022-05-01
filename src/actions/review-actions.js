@@ -4,6 +4,7 @@ export const CREATE_REVIEW = 'CREATE_REVIEW';
 export const FIND_REVIEW = 'FIND_REVIEW';
 export const FIND_ALL_REVIEWS = 'FIND_ALL_REVIEWS';
 export const FIND_FRIEND_REVIEWS = 'FIND_FRIEND_REVIEWS';
+export const FIND_ALL_REVIEWS_BY_MOVIE = 'FIND_ALL_REVIEWS_BY_MOVIE';
 
 export const findFriendReviews = async (dispatch, array) => {
     const reviews = await service.findFriendReviews(array);
@@ -36,10 +37,23 @@ export const findReview = async (dispatch, rid) => {
 }
 
 export const findAllReviews = async (dispatch, uid) => {
-   const reviews = await service.findAllReviews(uid);
-
+   let reviews = await service.findAllReviews(uid);
+   if(!reviews){
+      reviews = [];
+   }
    dispatch({
     type: FIND_ALL_REVIEWS,
+    reviews
+   })
+}
+
+export const findAllReviewsByMovie = async (dispatch, mid) => {
+   let reviews = await service.findAllReviewsByMovie(mid);
+   if(!reviews){
+         reviews = [];
+      }
+   dispatch({
+    type: FIND_ALL_REVIEWS_BY_MOVIE,
     reviews
    })
 }
