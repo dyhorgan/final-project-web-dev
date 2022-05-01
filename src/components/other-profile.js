@@ -15,12 +15,12 @@ const OtherProfile = () => {
 
       return state
     });
-    console.log("logging state in profile component");
-    console.log(state);
+
 
     let profile = state.profileReducer.otherProfile;
     let reviewObj = state.reviewReducer;
     let favoriteObj = state.favoriteReducer;
+    let followingObj = state.followingReducer;
     let dispatch = useDispatch();
     useEffect(() => {findAllReviews(dispatch, profile._id)}, [dispatch, profile._id])
     useEffect(() => {findAllFavorites(dispatch, profile._id)}, [dispatch, profile._id])
@@ -30,10 +30,12 @@ const OtherProfile = () => {
 
     let key = 0;
 
+    const isFollowed = () => {return followingObj.following.map((obj) => obj.followingId).includes(profile._id)};
+
+
     return (<div>
       <NavBar />
       <div className="m-5">
-      <h1>Profile Page</h1>
 
        <img src={profile.imageUrl} width="20%" alt="" />
 
@@ -42,20 +44,21 @@ const OtherProfile = () => {
        <p className="text-white">{profile.bio}</p>
 
 
-       <h3>Reviews </h3>
-{reviewObj.reviews.map((rev) => {
+       <h3 className="text-white">Reviews </h3>
+       {reviewObj.reviews.map((rev) => {
           key += 1;
-          return (<div>
+          return (<div key={key}>
           <h5 className="text-white">{rev.title} - {rev.text}</h5>
        </div>)
        })}
 
-       <h3>Favorites</h3>
+       <h3 className="text-white">Favorites</h3>
        {favoriteObj.favorites.map((favorite) => {
-                 return (<h5 className="text-white">{favorite.title}</h5>)
+                  key += 1;
+                 return (<h5 className="text-white" key={key}>{favorite.title}</h5>)
               })}
 
-      <button className="btn btn-primary" onClick={follow} >Follow</button>
+      {!isFollowed() && state.profileReducer._id ? <button className="btn btn-primary" onClick={follow}>Follow</button> :  ""}
       </div>
 
     </div>)

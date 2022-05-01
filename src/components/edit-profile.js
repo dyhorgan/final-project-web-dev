@@ -54,33 +54,20 @@ const EditProfile = () => {
        <img src={profile.imageUrl} alt="" width="20%"/>
        <form onSubmit={submitImage} className="text-white">
           <label>Update Profile Picture
-            <input type="text" name="image" className="ms-3" value={srcText} onChange={onChangeSRCFunc}/>
+            <input type="text" name="image" className="ms-3" size="100" value={srcText} onChange={onChangeSRCFunc}/>
           </label>
           <input className="btn btn-primary ms-3" type="submit" value="Update Image URL"/>
        </form>
 
        <h3 className="display-3 text-white">{profile.username}</h3>
-
+       <h5 className="text-white">{profile.bio}</h5>
        <form onSubmit={submitBio} className="text-white">
            <label>Update Bio
             <input type="text" name="bio" className="ms-3" value={bioText} onChange={onChangeBioFunc}/>
            </label>
            <input className="btn btn-primary ms-3" type="submit" value="Update Bio"/>
          </form>
-
-
-       <h3 className="text-white">Reviews </h3>
-       {reviewObj.reviews.map((rev) => {return <p>{rev.text}</p>})}
-
-              <h3 className="text-white">Favorites</h3>
-
-              <h3 className="text-white">Following</h3>
-
-              <h3 className="text-white">Followers</h3>
-       </div>
-
-
-
+      </div>
     </div>)
 }
 

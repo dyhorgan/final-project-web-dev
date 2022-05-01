@@ -3,6 +3,7 @@ import creature from "../pictures/creature.png"
 import {Link} from "react-router-dom"
 import {setQuery} from "../actions/movie-actions.js"
 import {useDispatch, useSelector} from "react-redux";
+import {resetProfile} from "../actions/profile-actions.js";
 
 const NavBar = () => {
 
@@ -19,6 +20,8 @@ const NavBar = () => {
   }
 
   const set = useCallback(() => {setQuery(dispatch, query)},[dispatch, query])
+
+  const reset = useCallback(() => {resetProfile(dispatch)},[dispatch])
 
   let {username} = state;
 
@@ -72,11 +75,22 @@ const NavBar = () => {
                 </Link>
               </li> : <div />
               }
-              {username.length > 0 ? <li className="nav-item ms-5">
+               <li className="nav-item ms-5">
                                                      <Link className="nav-link" to="/people-to-follow">
-                                                     <h5>People to Follow</h5>
+                                                     <h5>Community</h5>
                                                      </Link>
-                                                   </li> : <div />}
+                                                   </li>
+              {username ? <li className="nav-item ms-5">
+                                                                   <Link className="nav-link" to="/friends">
+                                                                   <h5>People You Follow</h5>
+                                                                   </Link>
+                                                                 </li> : <div />}
+              {username.length > 0 ? <li className="nav-item ms-5">
+                                                                   <Link className="nav-link" to="/home">
+                                                                   <h5 onClick={reset}>Logout</h5>
+                                                                   </Link>
+                                                                 </li> : <div />}
+
               </ul>
 
             </div>

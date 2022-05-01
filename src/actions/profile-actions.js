@@ -5,6 +5,16 @@ export const FIND_PROFILE = 'FIND_PROFILE';
 export const FIND_ALL_PROFILES = 'FIND_ALL_PROFILES';
 export const SET_OTHER_PROFILE = "SET_OTHER_PROFILE";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
+export const RESET_PROFILE = "RESET_PROFILE";
+export const SET_OTHER_PROFILE_BY_ID = "SET_OTHER_PROFILE_BY_ID";
+
+export const setOtherProfileById = async (dispatch, id) => {
+  const profile = await service.findProfileById(id);
+  dispatch({
+     type: SET_OTHER_PROFILE_BY_ID,
+     profile
+   });
+}
 
 export const createProfile = async (dispatch, profile) => {
 
@@ -16,8 +26,16 @@ export const createProfile = async (dispatch, profile) => {
  });
 }
 
+export const resetProfile = (dispatch) => {
+  let state = {username: "", _id: "", imageUrl: "", otherProfile:{username: ""}};
+dispatch({
+   type: RESET_PROFILE,
+   state
+ });
+}
+
 export const updateProfile = async (dispatch, obj) => {
-  const updatedProfile = await service.updateProfile(obj);
+  await service.updateProfile(obj);
 
   dispatch({
     type: UPDATE_PROFILE,

@@ -4,6 +4,7 @@ export const SET_QUERY = "SET_QUERY";
 export const GET_MOVIE = "GET_MOVIE";
 export const GET_MOVIES_ARRAY = "GET_MOVIES_ARRAY";
 export const GET_MOVIE_POSTERS = "GET_MOVIE_POSTERS";
+export const GET_ONE_POSTER = "GET_ONE_POSTER";
 
 export const getMovies = async (dispatch, query) => {
 
@@ -41,6 +42,17 @@ export const getMoviePosters = async (dispatch, array) => {
       posters
     })
 
+}
+
+export const getOnePoster = async (dispatch, id) => {
+    console.log("logging id in poster action");
+    console.log(id);
+    const poster = await service.getOnePoster(id);
+
+    dispatch({
+      type: GET_ONE_POSTER,
+      poster
+    })
 }
 
 export const getMoviesArray = async (dispatch, array) => {

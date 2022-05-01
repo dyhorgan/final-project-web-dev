@@ -1,8 +1,11 @@
 import React, {useState, useCallback} from "react";
-import {Link} from "react-router-dom";
+import {BrowserRouter as router, Link} from "react-router-dom";
 import NavBar from "./navbar.js"
 import {findProfile, createProfile} from "../actions/profile-actions.js"
 import {useSelector, useDispatch} from "react-redux";
+
+
+
 
 const Login = () => {
 
@@ -22,9 +25,10 @@ const Login = () => {
      setUsername(event.target.value);
   }
 
-  const loginFunc = useCallback(() => {findProfile(dispatch, {username, password})},[dispatch, {username, password}])
+  const loginFunc = useCallback(() => {
+      findProfile(dispatch, {username, password})
+  },[dispatch, {username, password}])
   const signUpFunc = useCallback(() => {createProfile(dispatch, {username, password})},[dispatch, {username, password}])
-
 
   return(<div>
           <NavBar />
@@ -39,10 +43,10 @@ const Login = () => {
               <div className="col-5"/>
               <div className="col-3 ">
                 <div className="submitPad">
-                <Link to="/profile">
-                  <button className="submitStyling center" onClick={loginFunc}>Login</button>
-                  <button className="submitStyling center" onClick={signUpFunc}>Signup</button>
-                </Link>
+                  <Link to="/profile">
+                    <button className="submitStyling center" onClick={loginFunc}>Login</button>
+                    <button className="submitStyling center" onClick={signUpFunc}>Signup</button>
+                  </Link>
                 </div>
               </div>
             </div>

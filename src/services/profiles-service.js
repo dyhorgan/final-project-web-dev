@@ -13,9 +13,15 @@ export const findProfile = async (profileInfo) => {
 
   const profile = response.data;
 
-
-
   return profile
+}
+
+export const findProfileById = async (id) => {
+
+  const response = await axios.get("https://final-project-web-dev-server.herokuapp.com/api/profiles/" + id);
+  console.log("log in profile service");
+  console.log(response);
+  return response.data;
 }
 
 export const updateProfile = async (obj) => {

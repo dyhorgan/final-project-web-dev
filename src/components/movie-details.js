@@ -1,6 +1,6 @@
 import React, {useEffect, useCallback, useState} from "react"
 import {useParams} from "react-router-dom"
-import {getMovie} from "../actions/movie-actions.js"
+import {getMovie, getOnePoster} from "../actions/movie-actions.js"
 import {createFavorite} from "../actions/favorite-actions.js"
 import {createReview} from "../actions/review-actions.js"
 import {useDispatch, useSelector} from "react-redux"
@@ -17,7 +17,8 @@ const MovieDetails = () => {
           return state;
         });
 
-  let {movie} = state.movieReducer;
+  let {movie, poster} = state.movieReducer;
+  console.log(state.movieReducer);
   let {title} = movie;
   let movieId = movie.id;
   let {_id, username} = state.profileReducer;
@@ -42,15 +43,18 @@ const MovieDetails = () => {
   const add = useCallback(() => {createFavorite(dispatch, {userId, movieId, title})}, [dispatch, {userId, movieId, title}]);
 
   const onChangeFunc = (event) => {setText(event.target.value)};
+  useEffect(() => {getOnePoster(dispatch, movieId)},[dispatch, movieId]);
 
   return(<div>
     <NavBar />
   <div className="m-5">
 
   <h1>{movie.original_title}</h1>
-  <h4>Release Date: {movie.release_date}</h4>
-  <h4>Average Rating: {movie.vote_average}</h4>
-  <h4>
+  <img src={"https://image.tmdb.org/t/p/original/" + poster} width="25%" alt=""/>
+
+  <h4 className="text-white">Release Date: {movie.release_date}</h4>
+  <h4 className="text-white">Average Rating: {movie.vote_average}</h4>
+  <h4 className="text-white">
   Runtime:
   {
     (movie.runtime > 0) ? (" " + hours + "hr" + minutes + "min"): " N/A"
@@ -59,13 +63,13 @@ const MovieDetails = () => {
   { username.length > 0 ?
   <div>
   <form onSubmit={submit}>
-    <label>Write Review
-    <input type="text" name="review" onChange={onChangeFunc}/>
+    <label className="text-white me-1">
+    Write Review  <input type="text" name="review" className="ms-3" onChange={onChangeFunc}/>
     </label>
     <input className="btn btn-primary" type="submit" value="submit"/>
   </form>
 
-  <h4>Assign to Favorites</h4>
+  <h4 className="text-white">Assign to Favorites</h4>
   <button type="button" className="btn btn-primary" onClick={add}>Add</button>
   </div> : <div />
   }

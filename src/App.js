@@ -9,6 +9,7 @@ import MovieDetails from "./components/movie-details.js"
 import Subgenre from "./components/subgenre.js"
 import PeopleToFollow from "./components/people-to-follow.js"
 import OtherProfile from "./components/other-profile.js"
+import Friends from "./components/friends.js"
 
 import {BrowserRouter, Route, Routes} from "react-router-dom"
 
@@ -36,7 +37,8 @@ function App() {
               <Route path="paranormal" element={<Subgenre genre="paranormal" />} />
           </Route>
           <Route path="people-to-follow" element={<PeopleToFollow />} />
-          <Route path="other-profile" element={<OtherProfile />} />
+          <Route path="profile/:id" element={<OtherProfile />} />
+          <Route path="friends" element={<Friends />} />
         </Route>
       </Routes>
     </BrowserRouter>

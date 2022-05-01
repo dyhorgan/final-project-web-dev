@@ -9,7 +9,7 @@ const reviewReducer = (state = {reviews: [], review: {}, friendReviews: []}, act
     case FIND_ALL_REVIEWS:
       return {...state, reviews: action.reviews};
     case FIND_FRIEND_REVIEWS:
-      console.log(action.reviews);
+
       return {...state, friendReviews: action.reviews};
     default: return(state)
   }

@@ -85,3 +85,13 @@ border-width: 2px;
 .white {
 color: white !important;
 }
+
+.verticalCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.bioMargin {
+  margin-right: 80%;
+}
+

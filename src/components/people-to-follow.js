@@ -22,7 +22,7 @@ const PeopleToFollow = () => {
     <div className="m-5">
     {state.profiles.map((profile) => {
       key += 1;
-      return (<Link to="/other-profile" key={key} style={{textDecoration: 'none'}}>
+      return (<Link to={"/profile/" + profile._id} key={key} style={{textDecoration: 'none'}}>
         <div className={"display-5 white"} onClick={() => look(profile)}>{profile.username}</div>
           </Link>
       )
