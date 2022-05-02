@@ -49,7 +49,7 @@ const MovieDetails = () => {
   useEffect(() => {getOnePoster(dispatch, movie.id)},[dispatch, movie.id]);
 
   useEffect(() => {
-  console.log("fired get reviews by movie");
+
 
   findAllReviewsByMovie(dispatch, id)
   }, [dispatch, id]);
