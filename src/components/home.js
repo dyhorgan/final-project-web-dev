@@ -1,4 +1,4 @@
-import React, {useEffect, useCallback} from "react"
+import React, {useEffect, useCallback, useMemo} from "react"
 import NavBar from "./navbar.js"
 import {useSelector, useDispatch} from "react-redux";
 import {findAllReviews, findFriendReviews} from "../actions/review-actions.js"
@@ -27,14 +27,14 @@ const Home = () => {
     let followingObj = state.followingReducer;
 
     let following = followingObj.following;
-    let friendArray = following.map((obj) => {return obj.followingId});
 
+    const friendArray = useMemo(() => {return following.map((obj) => {return obj.followingId}) }, [following]);
     useEffect(() => {
 
     findFriendReviews(dispatch, friendArray) },
-    [dispatch, profileInfo._id]);
+    [dispatch, friendArray]);
 
-    let look = useCallback((profile)=>{setOtherProfile(dispatch, profile)}, [dispatch, {}]);
+    let look = useCallback((profile)=>{setOtherProfile(dispatch, profile)}, [dispatch]);
 
     let key = 0;
 
@@ -99,20 +99,21 @@ const Home = () => {
 
              {state.reviewReducer.friendReviews.map((element, index) => {
                 key += 1;
-                let name = "";
+
                 if(following && element){
                    let obj = following.find((friend) => {
                                     if(friend.followingId === element.userId){
                                       return friend.following;
-                                    }
+                                    }else{return null}
                                   })
                    let name = "";
                    if(obj){
                     name = obj.following;
                    }
                    return <h3 key={key} className="text-white">{name + ": " + element.title + " - " + element.text}</h3>
+                }else{
+                  return "";
                 }
-
              })}
 
         </div>) :""}

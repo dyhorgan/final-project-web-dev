@@ -9,7 +9,7 @@ import MovieDetails from "./components/movie-details.js"
 import Subgenre from "./components/subgenre.js"
 import PeopleToFollow from "./components/people-to-follow.js"
 import OtherProfile from "./components/other-profile.js"
-import Friends from "./components/friends.js"
+
 
 import {BrowserRouter, Route, Routes} from "react-router-dom"
 

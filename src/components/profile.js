@@ -8,7 +8,7 @@ import {findAllReviews} from "../actions/review-actions.js"
 import {findAllFavorites} from "../actions/favorite-actions.js"
 import {findAllFollowing, findAllFollowers} from "../actions/following-actions.js"
 import {getMoviePosters, getMovie} from "../actions/movie-actions.js"
-import {setOtherProfile} from "../actions/profile-actions.js"
+//import {setOtherProfile} from "../actions/profile-actions.js"
 
 const Profile = () => {
 
@@ -26,7 +26,7 @@ const Profile = () => {
         useEffect(() => {findAllFollowing(dispatch, profile._id)}, [dispatch, profile._id, profile.username]);
         useEffect(() => {findAllFollowers(dispatch, profile._id)}, [dispatch, profile._id, profile.username]);
 
-   let look = useCallback((profile)=>{setOtherProfile(dispatch, profile)}, [dispatch]);
+
 
     let reviewObj = state.reviewReducer;
 
@@ -124,7 +124,7 @@ const Profile = () => {
 
       return(<div>
       <NavBar />
-      <h1 className="m-5 text-white">Profile Not Found</h1>
+      <h1 className="m-5 text-white">Profile Not Found In DB</h1>
       </div>
       );
     }
