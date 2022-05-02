@@ -2,7 +2,7 @@ import React, {useState, useCallback} from "react";
 import {Link} from "react-router-dom";
 import NavBar from "./navbar.js"
 import {findProfile, createProfile} from "../actions/profile-actions.js"
-import {useSelector, useDispatch} from "react-redux";
+import {useDispatch} from "react-redux";
 
 
 

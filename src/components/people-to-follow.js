@@ -18,7 +18,7 @@ const PeopleToFollow = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {findAllProfiles(dispatch)},[dispatch]);
-  let look = useCallback((profile)=>{setOtherProfile(dispatch, profile)}, [dispatch, {}]);
+  let look = useCallback((profile)=>{setOtherProfile(dispatch, profile)}, [dispatch]);
   let key = 0;
   let people = state.profileReducer.profiles;
   let followingObj = state.followingReducer;
