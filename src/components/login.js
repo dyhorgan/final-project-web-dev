@@ -10,9 +10,6 @@ import {useSelector, useDispatch} from "react-redux";
 const Login = () => {
 
   let dispatch = useDispatch();
-  const state = useSelector((state) => {
-        return state.profileReducer
-      });
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -32,8 +29,8 @@ const Login = () => {
 
   const loginFunc = useCallback(() => {
       findProfile(dispatch, {username, password})
-  },[dispatch, {username, password}])
-  const signUpFunc = useCallback(() => {createProfile(dispatch, {username, password, admin: checkedValue})},[dispatch, {username, password, admin: checkedValue}])
+  },[dispatch, username, password])
+  const signUpFunc = useCallback(() => {createProfile(dispatch, {username, password, admin: checkedValue})},[dispatch, username, password, checkedValue])
 
   return(<div>
           <NavBar />

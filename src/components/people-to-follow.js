@@ -1,4 +1,4 @@
-import React, {useEffect, useCallback, useState} from "react"
+import React, {useEffect, useCallback} from "react"
 import {Link, useLocation} from "react-router-dom"
 import {useSelector, useDispatch} from "react-redux";
 import {findAllProfiles, setOtherProfile} from "../actions/profile-actions.js"
