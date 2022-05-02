@@ -32,16 +32,17 @@ const Home = () => {
     useEffect(() => {
 
     findFriendReviews(dispatch, friendArray) },
-    [dispatch, following]);
+    [dispatch, profileInfo._id]);
 
     let look = useCallback((profile)=>{setOtherProfile(dispatch, profile)}, [dispatch, {}]);
 
-
     let key = 0;
 
-    let recentUsers;
+    let recentUsers = [];
     if(profileInfo.profiles){
+
       recentUsers = profileInfo.profiles.slice(-4).reverse();
+
     }
 
     return (<div className="font-weight-bold">
@@ -100,11 +101,15 @@ const Home = () => {
                 key += 1;
                 let name = "";
                 if(following && element){
-                   name = following.find((friend) => {
+                   let obj = following.find((friend) => {
                                     if(friend.followingId === element.userId){
                                       return friend.following;
                                     }
-                                  }).following
+                                  })
+                   let name = "";
+                   if(obj){
+                    name = obj.following;
+                   }
                    return <h3 key={key} className="text-white">{name + ": " + element.title + " - " + element.text}</h3>
                 }
 

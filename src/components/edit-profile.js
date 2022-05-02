@@ -15,10 +15,12 @@ const EditProfile = () => {
       return state
     });
 
-
-
     let profile = state.profileReducer;
-    let reviewObj = state.reviewReducer;
+    console.log(profile);
+    if(profile.editingOther){
+      profile = profile.otherProfile;
+    }
+
     let dispatch = useDispatch();
     useEffect(() => {findAllReviews(dispatch, profile._id)}, [dispatch, profile._id]);
 
@@ -53,31 +55,39 @@ const EditProfile = () => {
     const submitBio = useCallback((event) => {
       event.preventDefault();
       updateProfile(dispatch, {bio: bioText, _id: profile._id})
-    }, [dispatch, {bio: bioText}]);
+    }, [dispatch, bioText, profile._id]);
 
     const submitImage = useCallback((event) => {
       event.preventDefault();
       updateProfile(dispatch, {imageUrl: srcText, _id: profile._id})
-    }, [dispatch, {imageUrl: srcText}])
+    }, [dispatch, srcText, profile._id])
 
     const submitEmail = useCallback((event) => {
           event.preventDefault();
           updateProfile(dispatch, {email: emailText, _id: profile._id})
-        }, [dispatch, {}])
+        }, [dispatch, emailText, profile._id])
 
     const submitPhone = useCallback((event) => {
           event.preventDefault();
           updateProfile(dispatch, {phone: phoneText, _id: profile._id})
-        }, [dispatch, {}])
+        }, [dispatch, phoneText, profile._id])
 
 
     return (<div>
       <NavBar />
       <div className="m-5">
       <div>
+      {state.profileReducer.editingOther ? (
+          <Link to={"/profile/" + profile._id}>
+              <button className="btn btn-primary">Finished</button>
+          </Link>
+      ) : (
       <Link to="/profile">
-        <button className="btn btn-primary">Finished</button>
-      </Link>
+              <button className="btn btn-primary">Finished</button>
+            </Link>
+            )
+      }
+
       </div>
        <img src={profile.imageUrl} alt="" width="20%"/>
        <form onSubmit={submitImage} className="text-white">

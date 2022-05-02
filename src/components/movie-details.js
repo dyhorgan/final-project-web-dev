@@ -1,4 +1,4 @@
-import React, {useEffect, useCallback, useState} from "react"
+import React, {useEffect, useCallback, useState, useMemo} from "react"
 import {useParams} from "react-router-dom"
 import {getMovie, getOnePoster} from "../actions/movie-actions.js"
 import {createFavorite} from "../actions/favorite-actions.js"
@@ -18,13 +18,12 @@ const MovieDetails = () => {
         });
 
   let {movie, poster} = state.movieReducer;
-  console.log(state.movieReducer);
+
   let {title} = movie;
   let movieId = movie.id;
   let {_id, username} = state.profileReducer;
 
   let userId = _id;
-
 
   let hours;
   let minutes;
@@ -35,19 +34,27 @@ const MovieDetails = () => {
   }
   const [text, setText] = useState("");
 
+
+  const obj = useMemo(() => {return {text, movieId, userId, title, username} }, [text, movieId, userId, title, username]);
   const submit = useCallback((event) => {
       event.preventDefault();
-      let date = Date.now();
-      createReview(dispatch, {text, movieId, userId, date, title, username})}, [dispatch, {text, movieId, userId, date: {}, title, username}]
-      );
-  const add = useCallback(() => {createFavorite(dispatch, {userId, movieId, title})}, [dispatch, {userId, movieId, title}]);
+
+      createReview(dispatch, obj)
+      },[dispatch, obj]);
+
+  const favObj = useMemo(() => {return {userId, movieId, title} }, [userId, movieId, title]);
+  const add = useCallback(() => {createFavorite(dispatch, favObj)}, [dispatch, favObj]);
 
   const onChangeFunc = (event) => {setText(event.target.value)};
   useEffect(() => {getOnePoster(dispatch, movie.id)},[dispatch, movie.id]);
-  useEffect(() => {findAllReviewsByMovie(dispatch, movie.id)}, [dispatch, movie.id]);
 
-  console.log(state.reviewReducer);
+  useEffect(() => {
+  console.log("fired get reviews by movie");
 
+  findAllReviewsByMovie(dispatch, id)
+  }, [dispatch, id]);
+
+  let key = 0;
   return(<div>
     <NavBar />
   <div className="m-5">
@@ -85,7 +92,8 @@ const MovieDetails = () => {
       <div>
     <h5 className="text-white">Community Reviews</h5>
     {state.reviewReducer.reviews.map((rev) => {
-      return <h6 className="text-white">{rev.username + " " + rev.text}</h6>
+      key += 1;
+      return <h6 className="text-white" key={key}>{rev.username + " - " + rev.text}</h6>
     })}
       </div>
     )

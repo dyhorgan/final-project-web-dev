@@ -7,6 +7,7 @@ export const SET_OTHER_PROFILE = "SET_OTHER_PROFILE";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const RESET_PROFILE = "RESET_PROFILE";
 export const SET_OTHER_PROFILE_BY_ID = "SET_OTHER_PROFILE_BY_ID";
+export const SET_EDITING_OTHER = "SET_EDITING_OTHER";
 
 export const setOtherProfileById = async (dispatch, id) => {
   const profile = await service.findProfileById(id);
@@ -14,6 +15,12 @@ export const setOtherProfileById = async (dispatch, id) => {
      type: SET_OTHER_PROFILE_BY_ID,
      profile
    });
+}
+
+export const setEditingOther = (dispatch) => {
+  dispatch({
+    type: SET_EDITING_OTHER
+  })
 }
 
 export const createProfile = async (dispatch, profile) => {
@@ -27,7 +34,7 @@ export const createProfile = async (dispatch, profile) => {
 }
 
 export const resetProfile = (dispatch) => {
-  let state = {username: "", _id: "", imageUrl: "", bio: "", email: "", phone: "", otherProfile:{username: ""}};
+  let state = {username: "", profiles: [], _id: "", imageUrl: "", bio: "", email: "", phone: "", otherProfile:{username: "", imageUrl: "", bio: "", phone: ""}, admin: false, editingOther: false};
 dispatch({
    type: RESET_PROFILE,
    state

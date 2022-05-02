@@ -8,6 +8,7 @@ const movieReducer = (state = {movies: [], posters: [], poster: "", query: "", m
     case SET_QUERY:
       return {...state, query: action.query};
     case GET_MOVIE:
+
       return {...state, movie: action.movie};
     case GET_MOVIES_ARRAY:
       return {...state, movies: action.movies};

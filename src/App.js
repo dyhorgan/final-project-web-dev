@@ -38,7 +38,7 @@ function App() {
           </Route>
           <Route path="people-to-follow" element={<PeopleToFollow />} />
           <Route path="profile/:id" element={<OtherProfile />} />
-          <Route path="friends" element={<Friends />} />
+          <Route path="friends" element={<PeopleToFollow />} />
         </Route>
       </Routes>
     </BrowserRouter>

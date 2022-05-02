@@ -35,7 +35,18 @@ export const getMovie = async (dispatch, id) => {
 }
 
 export const getMoviePosters = async (dispatch, array) => {
-  const posters = await service.getMoviePosters(array);
+  console.log(array);
+  let inputArray;
+  if(array[0]){
+     if(array[0].movieId){
+       inputArray = array.map((element) => element.movieId);
+     }else{
+       inputArray = array;
+     }
+  }else{
+    inputArray = [];
+  }
+  const posters = await service.getMoviePosters(inputArray);
 
     dispatch({
       type: GET_MOVIE_POSTERS,
@@ -45,8 +56,7 @@ export const getMoviePosters = async (dispatch, array) => {
 }
 
 export const getOnePoster = async (dispatch, id) => {
-    console.log("logging id in poster action");
-    console.log(id);
+
     let poster = "";
     if(id){
       poster = await service.getOnePoster(id);

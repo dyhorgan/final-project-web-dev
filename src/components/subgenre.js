@@ -1,5 +1,5 @@
-import React, {useEffect} from "react"
-import {getMoviesArray, getMoviePosters} from "../actions/movie-actions.js"
+import React, {useEffect, useCallback} from "react"
+import {getMoviesArray, getMoviePosters, getMovie} from "../actions/movie-actions.js"
 import {useSelector, useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
 import NavBar from "./navbar.js"
@@ -12,8 +12,11 @@ const Subgenre = (props) => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {getMoviesArray(dispatch, filmObj[props.genre])},[dispatch, filmObj[props.genre]]);
-  useEffect(() => {getMoviePosters(dispatch, filmObj[props.genre])},[dispatch, filmObj[props.genre]]);
+
+
+  useEffect(() => {getMoviesArray(dispatch, filmObj[props.genre])},[dispatch, props.genre]);
+  useEffect(() => {getMoviePosters(dispatch, filmObj[props.genre])},[dispatch, props.genre]);
+  let movieFunc = useCallback((movieId) => {getMovie(dispatch, movieId)}, [dispatch])
   console.log("movie state in subgenre component");
   console.log(state);
   let key = 0;
@@ -29,7 +32,7 @@ const Subgenre = (props) => {
     return (
     <div className="card"  style={{width: "28rem"}} key={key}>
       <Link to={"/details/" + movie.id}>
-      <img className="card-img-top" width="100px" src={"https://image.tmdb.org/t/p/original/" + state.posters[index]} alt="Card image cap"/>
+      <img className="card-img-top" onClick={() => movieFunc(movie.id)} width="100px" src={"https://image.tmdb.org/t/p/original/" + state.posters[index]} alt=""/>
       </Link>
       <div className="card-body center">
         <h3 className="card-text">{movie.original_title}</h3>
