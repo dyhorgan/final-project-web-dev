@@ -55,13 +55,19 @@ const Home = () => {
         <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
           <div className="carousel-inner">
             <div className="carousel-item active" style={{position:"relative", left:"25%"}}>
-              <img className="d-block" src="https://image.tmdb.org/t/p/original/hN333m776qWYnbjTTcykwClYNgx.jpg" width="50%" alt="First slide"/>
+              <Link to="/details/814" >
+                <img className="d-block" src="https://image.tmdb.org/t/p/original/hN333m776qWYnbjTTcykwClYNgx.jpg" width="50%" alt="First slide"/>
+              </Link>
             </div>
             <div className="carousel-item" style={{position:"relative", left:"25%"}}>
-              <img className="d-block" src="https://image.tmdb.org/t/p/original//tzGY49kseSE9QAKk47uuDGwnSCu.jpg" width="50%" alt="Second slide"/>
+              <Link to="/details/1091" >
+                <img className="d-block" src="https://image.tmdb.org/t/p/original//tzGY49kseSE9QAKk47uuDGwnSCu.jpg" width="50%" alt="Second slide"/>
+              </Link>
             </div>
             <div className="carousel-item" style={{position:"relative", left:"25%"}}>
-              <img className="d-block" src="https://image.tmdb.org/t/p/original//zap5hpFCWSvdWSuPGAQyjUv2wAC.jpg" width="50%" alt="Third slide"/>
+              <Link to="/details/310131" >
+                <img className="d-block" src="https://image.tmdb.org/t/p/original//zap5hpFCWSvdWSuPGAQyjUv2wAC.jpg" width="50%" alt="Third slide"/>
+              </Link>
             </div>
           </div>
           <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">

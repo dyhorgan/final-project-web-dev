@@ -4,7 +4,7 @@ import {useSelector, useDispatch} from "react-redux";
 //import * as service from "../services/profiles-service.js"
 import NavBar from "./navbar.js"
 import {Link} from "react-router-dom"
-import {findAllReviews} from "../actions/review-actions.js"
+import {findAllReviews, deleteReview} from "../actions/review-actions.js"
 import {findAllFavorites} from "../actions/favorite-actions.js"
 import {createFollowing} from "../actions/following-actions.js"
 import {setEditingOther} from "../actions/profile-actions.js"
@@ -49,6 +49,8 @@ const OtherProfile = () => {
 
     let {posters} = state.movieReducer;
 
+    const deleteFunc = useCallback((id) => {deleteReview(dispatch, id)}, [dispatch]);
+
     return (<div>
       <NavBar />
       <div className="m-5">
@@ -80,6 +82,7 @@ const OtherProfile = () => {
                         <div className="verticalCenter" style={{width: "18em"}}>
                            <h5 className="text-white ms-4">{rev.title} - {rev.text}</h5>
                         </div>
+                        {(state.profileReducer.admin && !profile.admin) ? <button className="btn btn-primary" onClick={() => deleteFunc(rev._id)}>Delete</button> : ""}
                      </div>)
                      }else{
                        return <div key={key} />;
@@ -96,7 +99,7 @@ const OtherProfile = () => {
       {!isFollowed() && state.profileReducer.username ? <button className="btn btn-primary mt-4" onClick={follow}>Follow</button> :  ""}
       </div>
 
-      {<div className="m-5 text-white">
+      {(state.profileReducer.admin && !profile.admin) ? <div className="m-5 text-white">
           <h2>Admin-Only Info</h2>
           <h3>
              Email: {profile.email}
@@ -104,7 +107,7 @@ const OtherProfile = () => {
           <h3>
             Phone: {profile.phone}
           </h3>
-      </div>}
+      </div> : ""}
 
     </div>)
 }

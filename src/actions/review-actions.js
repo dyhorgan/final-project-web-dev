@@ -5,6 +5,26 @@ export const FIND_REVIEW = 'FIND_REVIEW';
 export const FIND_ALL_REVIEWS = 'FIND_ALL_REVIEWS';
 export const FIND_FRIEND_REVIEWS = 'FIND_FRIEND_REVIEWS';
 export const FIND_ALL_REVIEWS_BY_MOVIE = 'FIND_ALL_REVIEWS_BY_MOVIE';
+export const DELETE_REVIEW = "DELETE_REVIEW";
+export const DELETE_FRIEND_REVIEW = "DELETE_FRIEND_REVIEW";
+
+export const deleteReview = async (dispatch, _id) => {
+  await service.deleteReview(_id);
+
+  dispatch({
+    type: DELETE_REVIEW,
+    _id
+  })
+}
+
+export const deleteFriendReview = async (dispatch, _id) => {
+  await service.deleteReview(_id);
+
+  dispatch({
+    type: DELETE_FRIEND_REVIEW,
+    _id
+  })
+}
 
 export const findFriendReviews = async (dispatch, array) => {
     const reviews = await service.findFriendReviews(array);

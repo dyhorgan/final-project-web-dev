@@ -4,7 +4,7 @@ import {useSelector, useDispatch} from "react-redux";
 //import * as service from "../services/profiles-service.js"
 import NavBar from "./navbar.js"
 import {Link} from "react-router-dom"
-import {findAllReviews} from "../actions/review-actions.js"
+import {findAllReviews, deleteReview} from "../actions/review-actions.js"
 import {findAllFavorites} from "../actions/favorite-actions.js"
 import {findAllFollowing, findAllFollowers} from "../actions/following-actions.js"
 import {getMoviePosters, getMovie} from "../actions/movie-actions.js"
@@ -39,6 +39,8 @@ const Profile = () => {
     useEffect(() => {
       getMoviePosters(dispatch, reviewObj.reviews);
     },[dispatch, reviewObj.reviews, profile._id]);
+
+    const deleteFunc = useCallback((id) => {deleteReview(dispatch, id)}, [dispatch]);
 
     let {posters} = movieObj;
 
@@ -81,6 +83,7 @@ const Profile = () => {
                  <div className="verticalCenter" style={{width: "18em"}}>
                     <h5 className="text-white ms-4">{rev.title} - {rev.text}</h5>
                  </div>
+                 <button className="btn btn-primary" onClick={() => deleteFunc(rev._id)}>Delete</button>
               </div>)
               }else{
                 return <div key={key} />;

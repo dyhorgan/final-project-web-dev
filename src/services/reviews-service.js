@@ -49,6 +49,12 @@ export const findAllReviewsByMovie = async (mid) => {
 // return response.data;
 //}
 //
+
+export const deleteReview = async (id) => {
+  const response = await axios.delete(REVIEWS_API + "/" + id);
+  return response.data;
+}
+
 export const createReview = async (review) => {
    console.log("logging review being sent");
 
